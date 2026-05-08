@@ -2,7 +2,12 @@ from fastapi import APIRouter, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from app.services.todo_store import add_todo, delete_todo, get_all_todos
+from app.services.todo_store import (
+    add_todo,
+    delete_todo,
+    get_all_todos,
+    toggle_todo_completed,
+)
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
@@ -27,4 +32,10 @@ def create_todo(text: str = Form(...)):
 @router.post("/todos/{todo_id}/delete")
 def remove_todo(todo_id: int):
     delete_todo(todo_id)
+    return RedirectResponse(url="/", status_code=303)
+
+
+@router.post("/todos/{todo_id}/toggle")
+def toggle_todo(todo_id: int):
+    toggle_todo_completed(todo_id)
     return RedirectResponse(url="/", status_code=303)

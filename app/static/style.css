@@ -11,6 +11,7 @@
     --input-border: #d1d5db;
     --item-bg: #fafafa;
     --primary: #2563eb;
+    --secondary: #4b5563;
     --danger: #dc2626;
 }
 
@@ -23,6 +24,7 @@
     --input-border: #4b5563;
     --item-bg: #111827;
     --primary: #3b82f6;
+    --secondary: #9ca3af;
     --danger: #ef4444;
 }
 
@@ -95,6 +97,10 @@ button {
     background: var(--danger);
 }
 
+.secondary {
+    background: var(--secondary);
+}
+
 .todo-list {
     list-style: none;
     margin: 0;
@@ -115,6 +121,16 @@ button {
 
 .todo-list li form {
     margin: 0;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.todo-list li.completed span {
+    text-decoration: line-through;
+    color: var(--subtle-text);
 }
 
 .empty {

@@ -14,11 +14,18 @@
 <ul class="todo-list">
     {% if todos %}
         {% for todo in todos %}
-        <li>
+        <li class="{% if todo.completed %}completed{% endif %}">
             <span>{{ todo.text }}</span>
-            <form action="/todos/{{ todo.id }}/delete" method="post">
-                <button type="submit" class="danger">Delete</button>
-            </form>
+            <div class="todo-actions">
+                <form action="/todos/{{ todo.id }}/toggle" method="post">
+                    <button type="submit" class="secondary">
+                        {% if todo.completed %}Undo{% else %}Complete{% endif %}
+                    </button>
+                </form>
+                <form action="/todos/{{ todo.id }}/delete" method="post">
+                    <button type="submit" class="danger">Delete</button>
+                </form>
+            </div>
         </li>
         {% endfor %}
     {% else %}

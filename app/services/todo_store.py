@@ -6,6 +6,7 @@ from typing import List
 class Todo:
     id: int
     text: str
+    completed: bool = False
 
 
 _todos: List[Todo] = []
@@ -29,3 +30,10 @@ def add_todo(text: str) -> None:
 def delete_todo(todo_id: int) -> None:
     global _todos
     _todos = [todo for todo in _todos if todo.id != todo_id]
+
+
+def toggle_todo_completed(todo_id: int) -> None:
+    for todo in _todos:
+        if todo.id == todo_id:
+            todo.completed = not todo.completed
+            break
