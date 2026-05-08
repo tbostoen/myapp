@@ -5,10 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Todo App{% endblock %}</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        })();
+    </script>
 </head>
 <body>
+    <header class="topbar">
+        <button id="theme-toggle" type="button" class="toggle-btn">Dark mode</button>
+    </header>
     <main class="container">
         {% block content %}{% endblock %}
     </main>
+    <script>
+        (function () {
+            const toggleButton = document.getElementById("theme-toggle");
+            const root = document.documentElement;
+
+            function applyLabel() {
+                const isDark = root.getAttribute("data-theme") === "dark";
+                toggleButton.textContent = isDark ? "Light mode" : "Dark mode";
+            }
+
+            toggleButton.addEventListener("click", function () {
+                const isDark = root.getAttribute("data-theme") === "dark";
+                if (isDark) {
+                    root.removeAttribute("data-theme");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    root.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                }
+                applyLabel();
+            });
+
+            applyLabel();
+        })();
+    </script>
 </body>
 </html>

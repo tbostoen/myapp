@@ -2,17 +2,56 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #f7f7fb;
+    --text: #1f2937;
+    --card-bg: #ffffff;
+    --subtle-text: #6b7280;
+    --border: #e5e7eb;
+    --input-border: #d1d5db;
+    --item-bg: #fafafa;
+    --primary: #2563eb;
+    --danger: #dc2626;
+}
+
+:root[data-theme="dark"] {
+    --bg: #111827;
+    --text: #e5e7eb;
+    --card-bg: #1f2937;
+    --subtle-text: #9ca3af;
+    --border: #374151;
+    --input-border: #4b5563;
+    --item-bg: #111827;
+    --primary: #3b82f6;
+    --danger: #ef4444;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f7f7fb;
-    color: #1f2937;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.topbar {
+    max-width: 720px;
+    margin: 20px auto 0;
+    padding: 0 4px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.toggle-btn {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
 }
 
 .container {
     max-width: 720px;
-    margin: 48px auto;
-    background: #fff;
+    margin: 16px auto 48px;
+    background: var(--card-bg);
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
@@ -25,7 +64,7 @@ h1 {
 
 .subtitle {
     margin-top: 0;
-    color: #6b7280;
+    color: var(--subtle-text);
 }
 
 .todo-form {
@@ -37,8 +76,10 @@ h1 {
 .todo-form input {
     flex: 1;
     padding: 10px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--input-border);
     border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
 }
 
 button {
@@ -46,12 +87,12 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background: #2563eb;
+    background: var(--primary);
     color: white;
 }
 
 .danger {
-    background: #dc2626;
+    background: var(--danger);
 }
 
 .todo-list {
@@ -66,10 +107,10 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 10px 12px;
-    background: #fafafa;
+    background: var(--item-bg);
 }
 
 .todo-list li form {
@@ -77,5 +118,5 @@ button {
 }
 
 .empty {
-    color: #6b7280;
+    color: var(--subtle-text);
 }
