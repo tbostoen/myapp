@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Todo App{% endblock %}
+
+{% block content %}
+<h1>Hello world</h1>
+<p class="subtitle">Simple FastAPI + Jinja Todo starter</p>
+
+<form action="/todos" method="post" class="todo-form">
+    <input type="text" name="text" placeholder="Enter a todo" required />
+    <button type="submit">Add</button>
+</form>
+
+<ul class="todo-list">
+    {% if todos %}
+        {% for todo in todos %}
+        <li>
+            <span>{{ todo.text }}</span>
+            <form action="/todos/{{ todo.id }}/delete" method="post">
+                <button type="submit" class="danger">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    {% else %}
+        <li class="empty">No todos yet.</li>
+    {% endif %}
+</ul>
+{% endblock %}
